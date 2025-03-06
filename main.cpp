@@ -20,7 +20,7 @@
 #include <glm/fwd.hpp>
 #include <glm/glm.hpp>
 #include <chrono>
-#include "src/Character.h"
+#include "src/Game.h"
 
 #include <BBOP/Graphics.h>
 
@@ -34,10 +34,9 @@ int main() {
   
   GLFWwindow * window;
   bbopInit(1920,1080,"name",window);
-  Scene scene;
 
-  Map map;
-  Camera cam;
+  std::cerr << "L1" << std::endl;
+  Game game;
   
 
 
@@ -47,12 +46,9 @@ int main() {
     bbopCleanWindow(window, Vector3i(0,0,0),1.0);
   
   
-    scene.Use();
-    map.Draw(scene, cam);
+    game.Draw();
 
-
-    // Faire le rendue du frame buffer de la fenêtre
-    scene.render();
+    
     
     // Verfication d'erreur opengl
     bbopErrorCheck();
