@@ -1,10 +1,12 @@
-#include "Character.h"
+#include "../include/Character.h"
 
 using namespace std;
 
 Perso::Perso(){
     AnimatedSprite stateRest("sprites/1.png", Vector2i(3,1), 0.5);
+    cerr<<"l7"<<endl;
     textures.push_back(stateRest);
+    cerr<<"l9"<<endl;
     AnimatedSprite stateThrowing("sprites/2.png", Vector2i(3,1), 0.5);
     textures.push_back(stateThrowing);
     AnimatedSprite statePull("sprites/3.png", Vector2i(3,1), 0.5);
