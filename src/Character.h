@@ -14,10 +14,14 @@ class Perso : public BbopDrawable{
 private:
     std::vector<AnimatedSprite> textures;
     State state;
+    Vector2f pos;
 
 public:
     Perso();
+    Perso(Vector2f);
     void Draw(GLint *renderUniform) const override;
     void Update();
     void stateUpdate(int);
+    Vector2f getPos();
+    void setPos(Vector2f);
 };
