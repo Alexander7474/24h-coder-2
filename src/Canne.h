@@ -23,9 +23,12 @@ private:
     float angle;
     bool rotat;
     Sprite hammecon;
+    int niveau;
 public:
     Canne(Vector2f start);
     void input(float power);
     void update();
+    int getniveau();
+    Vector2f hammeconpos();
 };
 

@@ -40,3 +40,7 @@ void Canne::update(){
 int Canne::getniveau(){
     return niveau;
 }
+
+Vector2f Canne::hammeconpos(){
+    return hammecon.getPosition();
+}
