@@ -20,7 +20,7 @@ public:
     Perso();
     Perso(Vector2f);
     void Draw(GLint *renderUniform) const override;
-    void Update();
+    void update();
     void stateUpdate(int);
     Vector2f getPos();
     void setPos(Vector2f);
