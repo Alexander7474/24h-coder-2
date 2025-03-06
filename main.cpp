@@ -40,6 +40,9 @@ int main() {
 
   Banc b(20);
 
+  RectangleShape rect;
+  rect.setPosition(500.f,500.f);
+
   while (!glfwWindowShouldClose(window))
   {
 
@@ -59,6 +62,8 @@ int main() {
 
     b.update();
     scene.Draw(b);
+
+    scene.Draw(rect);
 
     // Faire le rendue du frame buffer de la fenêtre
     scene.render();

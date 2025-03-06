@@ -28,7 +28,11 @@ Banc::Banc()
 void Banc::update() 
 {
   for(int i = 0; i < fishs.size(); i++){
-    cerr << i << endl;
     fishs[i].update(fishs);
   }
+}
+
+std::vector<Fish>& Banc::getFishs()
+{
+  return fishs;
 }

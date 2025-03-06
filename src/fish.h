@@ -5,9 +5,16 @@
 class Fish : public Sprite 
 {
 private:
-   float speed;
+  float maxSpeed;
+  Vector2f direction;
+  float distanceDetect;
+
+  int dir;
+
 public:
   Fish();
 
+
+  void goTo(Vector2f p);
   void update(std::vector<Fish>& copains);
 };
