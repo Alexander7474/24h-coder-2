@@ -46,7 +46,7 @@ int main() {
     bbopCleanWindow(window, Vector3i(0,0,0),1.0);
   
   
-    game.Draw();
+    game.update();
 
     
     

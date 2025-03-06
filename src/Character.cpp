@@ -3,24 +3,24 @@
 using namespace std;
 
 Perso::Perso(){
-    AnimatedSprite stateRest("assets/sprite/perso/0.png", Vector2i(1,1), 0.5);
+    AnimatedSprite stateRest("assets/sprite/perso/idle/0.png", Vector2i(1,1), 0.5);
     textures.push_back(stateRest);
-    AnimatedSprite stateThrowing("assets/sprite/perso/0.png", Vector2i(1,1), 0.5);
+    AnimatedSprite stateThrowing("assets/sprite/perso/launch/0.png", Vector2i(1,1), 0.5);
     textures.push_back(stateThrowing);
-    AnimatedSprite statePull("assets/sprite/perso/0.png", Vector2i(1,1), 0.5);
+    AnimatedSprite statePull("assets/sprite/perso/launch/0.png", Vector2i(1,1), 0.5);
     textures.push_back(statePull);
     state = rest;
 }
 
 Perso::Perso(Vector2f position){
     pos = position;
-    AnimatedSprite stateRest("assets/sprite/perso/0.png", Vector2i(1,1), 0.5);
+    AnimatedSprite stateRest("assets/sprite/perso/idle/0.png", Vector2i(1,1), 0.5);
     stateRest.setPosition(pos);
     textures.push_back(stateRest);
-    AnimatedSprite stateThrowing("assets/sprite/perso/0.png", Vector2i(1,1), 0.5);
+    AnimatedSprite stateThrowing("assets/sprite/perso/lauch/0.png", Vector2i(1,1), 0.5);
     stateThrowing.setPosition(pos);
     textures.push_back(stateThrowing);
-    AnimatedSprite statePull("assets/sprite/perso/0.png", Vector2i(1,1), 0.5);
+    AnimatedSprite statePull("assets/sprite/perso/launch/0.png", Vector2i(1,1), 0.5);
     statePull.setPosition(pos);
     textures.push_back(statePull);
     state = rest;

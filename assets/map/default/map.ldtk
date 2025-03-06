@@ -6692,7 +6692,7 @@
 					"entityInstances": [
 						{
 							"__identifier": "Spawn_point",
-							"__grid": [548,142],
+							"__grid": [548,137],
 							"__pivot": [0,0],
 							"__tags": [],
 							"__tile": null,
@@ -6701,7 +6701,7 @@
 							"width": 8,
 							"height": 8,
 							"defUid": 301,
-							"px": [548,142],
+							"px": [548,137],
 							"fieldInstances": []
 						}
 					]
