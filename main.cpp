@@ -25,33 +25,17 @@
 #include <BBOP/Graphics.h>
 
 using namespace std;
-
-
-
 int main() {
   
   GLFWwindow * window;
   bbopInit(1920,1080,"name",window);
 
-  Scene scene;
-
-  Map map;
-  Camera cam;
-  
-
-
   while (!glfwWindowShouldClose(window))
   {
     // Nettoyage de la fenêtre
     bbopCleanWindow(window, Vector3i(0,0,0),1.0);
-  
-    scene.Use();
-    map.Draw(scene, cam);
 
 
-    // Faire le rendue du frame buffer de la fenêtre
-    scene.render();
-    
     // Verfication d'erreur opengl
     bbopErrorCheck();
 
