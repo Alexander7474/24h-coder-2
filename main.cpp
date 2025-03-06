@@ -21,6 +21,8 @@
 #include <glm/glm.hpp>
 #include <chrono>
 
+#include"src/Canne.h"
+
 #include <BBOP/Graphics.h>
 
 
@@ -38,79 +40,29 @@ int main() {
   
   GLFWwindow * window;
   bbopInit(1920,1080,"name",window);
-  
-  Scene scene(0.1f, Vector3i(255,255,255));
-  Camera cam;
+  Canne cc(Vector2f(500.f,500.f));
+  Scene scene(1.0f, Vector3i(255,255,255));
 
-  AnimatedSprite bougie("imgTesting/bougie/sprite_sheet_candle1-sheet.png",Vector2i(5,1),0.1f,0);
-
-  Sprite rock("imgTesting/rock.png");
-  rock.setNormalMap(Texture("imgTesting/rock_map.png"));
-  rock.setPosition(800.f,400.f);
-  rock.setSize(500.f,500.f);
-  
-  Sprite box("imgTesting/box.png");
-  box.setNormalMap(Texture("imgTesting/box_normal.png"));
-  box.setPosition(100.f,100.f);
-  box.setSize(500.f,500.f);
-
-  bougie.setSize(270.f,270.f);
-  bougie.setOrigin(bougie.getSize().x/2.f, 55.f);
-
-  Light light(Vector2f(0.f,0.f), 0.9f, Vector3i(255,255,255),1.5f,3.0f,4.5f); // bougie
-  Vector2f maxIntensity(0.9f,1.2f); // intensité max de la bougie
-  float variation = 0.10f;
-
-   // Masquer le curseur de la souris
-  glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_HIDDEN);
-
-  // fond 
-  RectangleShape rectangle;
 
   while (!glfwWindowShouldClose(window))
   {
-    // Nettoyage de la fenêtre
+
     bbopCleanWindow(window, Vector3i(0,0,0),1.0);
   
-    //taille du fond 
-    rectangle.setSize(BBOP_WINDOW_RESOLUTION.x , BBOP_WINDOW_RESOLUTION.y);
 
-    //poistion de la souris pour la light 
-    double xpos, ypos;
-    glfwGetCursorPos(window, &xpos, &ypos);
-
-    // la bougie suit la souris
-    Vector2f mouseWorldPos = cam.camPosToWorldPos(cam.screenPosToCamPos(Vector2f(static_cast<float>(xpos), static_cast<float>(ypos))));
-    light.setPosition(mouseWorldPos);
-    bougie.setPosition(mouseWorldPos);
-
-    // variation de l'intensité de la bougie 
-    light.setIntensity(light.getIntensity() + fast_rand(-variation, variation));
-    if(light.getIntensity() > maxIntensity.y)
-      light.setIntensity(maxIntensity.y - variation);
-    if(light.getIntensity() < maxIntensity.x)
-      light.setIntensity(maxIntensity.x + variation);
-
-    // On 'active' la scene pour donner au shader opengl les variables uniforms
+    
     scene.Use();
+    
 
-    //
-    bougie.update();
 
-    // Affichage du rectangle
-   // scene.Draw(rectangle);
-
-    scene.Draw(rock);
-    scene.Draw(box);
-    scene.Draw(bougie);
-
-    // ajout de la lumière 
-    scene.addLight(light);
-
-    // Faire le rendue du frame buffer de la fenêtre
+    cc.input(2);
+    cc.update();
+    scene.Draw(cc);
+    
+    
     scene.render();
     
-    // Verfication d'erreur opengl
+
     bbopErrorCheck();
 
     // Passage du front buffer pour afficher le rendue opengl sur la fenêtre glfw 

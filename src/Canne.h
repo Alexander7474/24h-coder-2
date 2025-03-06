@@ -14,20 +14,16 @@ enum State{
     shoot=3
 };
 
-class Canne
+class Canne : public RectangleShape
 {
 private:
     State etat;
     Vector2f start;
-    Vector2f finish;
-    Vector2f velocity;
+    float range , trotation;
     float angle;
-    Sprite line;
-    bool throwing;
 public:
     Canne(Vector2f start);
-    void update(Scene carte , float power);
     void input(float power);
-    void Draw(Scene carte);
+    void update();
 };
 

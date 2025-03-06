@@ -2,31 +2,25 @@
 
 Canne::Canne(Vector2f start){
     this->start=start;
-    finish=start;
-    angle=-45.0f;
-    etat=idol;
+    setPosition(start);
+    setOrigin(Vector2f(0,0));
+    setSize(Vector2f(20.f,20.f));
+    setColor(Vector3i(255,255,255));
+    range=100.f;
+    trotation=1;
 }
 void Canne::input(float power){
-    if (throwing && power!=0)
+    range=100*power;
+    trotation=10/power;
+}
+void Canne::update(){
+    if (getRotation()< trotation && etat!=fall)
     {
-        velocity.x=cos(angle) * power;
-        velocity.y=sin(angle) * power;
+        setRotation(getRotation()+0.01f);
     }
-}
-void Canne::Draw(Scene scene){
-    scene.Draw(line);
-}
 
-void Canne::update(Scene scene,float power){
-    input(power);
-    velocity.y+=0.2f;
-    if (finish.y>500.0f)
-    {
-        throwing=false;
-    }
-    finish.x+=velocity.x;
-    finish.y+=velocity.y;
-    velocity.x=0;
-    velocity.y=0;
-    Draw(scene);
+   if (getSize().x<range)
+   {
+        setSize(Vector2f(getSize().x+1,getSize().y));
+   }
 }
