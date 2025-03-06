@@ -1,8 +1,9 @@
 CC = g++
-CFLAGS = -std=c++11 -Wall -I/usr/include/freetype2
+CFLAGS = -std=c++11 -Wall -I/usr/include/freetype2 
 LIBS = -L/usr/local/lib/ -lbbop -lglfw3 -lGLEW -lGL -lfreetype  -lLDtkLoader
 
-SRCS = main.cpp src/Character.cpp
+SRCS = main.cpp src/banc.cpp src/fish.cpp src/Character.cpp
+
 
 OBJS = $(SRCSM:.cpp=.o) $(SRCS:.cpp=.o)
 
