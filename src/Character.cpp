@@ -34,7 +34,7 @@ void Perso::Draw(GLint *renderUniform) const{
     textures[state].Draw(renderUniform);
 }
 
-void Perso::Update(){
+void Perso::update(){
     if (state == rest){
         textures[0].update();
     }
