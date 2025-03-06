@@ -2,28 +2,27 @@
 
 using namespace std;
 
-Character::Character()
-    : Base(""), character(Texture(""))
-{
-    state = rest;
+Perso::Perso(){
+    AnimatedSprite s("sprites/1.png", Vector2i(3,1), 0.5);
+    textures.push_back(s);
 }
 
-void Character::Animate(){ // == animate?
-    
+void Perso::Draw(GLint *renderUniform) const{
+    textures[0].Draw(renderUniform);
 }
 
-void Character::Draw(GLint *renderUniforms) const{
-    character.Draw(renderUniforms);
+void Perso::Update(){
+    textures[0].update();
 }
 
-void Character::SetPosition(Vector2f pos){
-    position = pos;
-}
-
-Vector2f Character::GetPosition(){
-    return(position);
-}
-
-int main(){
-    return(0);
-}
+/*
+update en fonction de l'état de l'animation
+donc chaque etat = 1 nb de frames
+et faut pouvoir changer d'état
+donc :
+    - une partie qui définit les etats et leur
+    nombre de frame
+    - une partie qui permet de changer d'état
+comme on change d'état en fonction de l'action du
+joueur
+*/

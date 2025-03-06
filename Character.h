@@ -1,3 +1,4 @@
+#pragma once
 #include <BBOP/Graphics/bbopMathClass.h>
 #include <BBOP/Graphics/sceneClass.h>
 #include <BBOP/Graphics.h>
@@ -8,25 +9,12 @@ enum State{
     pull=3
 };
 
-class Character : public Sprite{
+class Perso : public BbopDrawable{
 private:
-    Vector2f position;
+    std::vector<AnimatedSprite> textures;
 
 public:
-    Character();
-    std::vector<Texture> texture[2];
-    Texture Base;
-    Sprite character;
-    State state;
-    void Animate();
-    void Draw(GLint *renderUniforms) const override;
-    void SetPosition(Vector2f); // useful?
-    Vector2f GetPosition();
+    Perso();
+    void Draw(GLint *renderUniform) const override;
+    void Update();
 };
-
-/*
-to do:
-- animation
-- var etat
-- def le sprite?
-*/
