@@ -20,39 +20,39 @@
 #include <glm/fwd.hpp>
 #include <glm/glm.hpp>
 #include <chrono>
+#include "src/Character.h"
 
 #include"src/Canne.h"
 
 #include <BBOP/Graphics.h>
 
+#include "src/banc.h"
+#include "src/fish.h"
 
 using namespace std;
-
-float fast_rand(float min, float max) {
-    static unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
-    seed = (214013 * seed + 2531011); // LCG constants
-    return min + (seed >> 16) * (1.0f / 65535.0f) * (max - min); // Scale to [min, max]
-}
-
-//tentative de simuler une bougie
 
 int main() {
   
   GLFWwindow * window;
   bbopInit(1920,1080,"name",window);
+
   Canne cc(Vector2f(500.f,500.f));
   Scene scene(1.0f, Vector3i(255,255,255));
+
 
 
   while (!glfwWindowShouldClose(window))
   {
 
+
     bbopCleanWindow(window, Vector3i(0,0,0),1.0);
   
 
     
+
     scene.Use();
     
+
 
 
     cc.input(3);
@@ -65,6 +65,7 @@ int main() {
     cc.draw(scene);
     
     
+
     scene.render();
     
 
