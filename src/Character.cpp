@@ -1,4 +1,4 @@
-#include "../include/Character.h"
+#include "Character.h"
 
 using namespace std;
 
