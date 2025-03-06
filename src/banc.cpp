@@ -1,4 +1,8 @@
+#include <iostream>
+
 #include "banc.h"
+
+using namespace std;
 
 void Banc::Draw(GLint* renderUniforms) const
 {
@@ -24,6 +28,7 @@ Banc::Banc()
 void Banc::update() 
 {
   for(int i = 0; i < fishs.size(); i++){
+    cerr << i << endl;
     fishs[i].update(fishs);
   }
 }

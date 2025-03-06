@@ -53,6 +53,13 @@ int main() {
     // Nettoyage de la fenêtre
     bbopCleanWindow(window, Vector3i(0,0,0),1.0);
 
+<<<<<<< HEAD
+=======
+    // On 'active' la scene pour donner au shader opengl les variables uniforms
+    scene.Use();
+
+
+>>>>>>> 50b6d41 (initial commit)
     b.update();
     scene.Draw(b);
 

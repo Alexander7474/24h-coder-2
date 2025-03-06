@@ -5,7 +5,7 @@
 class Fish : public Sprite 
 {
 private:
-   
+   float speed;
 public:
   Fish();
 

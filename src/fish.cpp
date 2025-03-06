@@ -10,6 +10,8 @@ Fish::Fish()
 {
   setSize(32.f,16.f);
   setOrigin(16.f,8.f);
+
+  speed = 0.5f;
  
   int randx = rand() % 1920;
   int randy = rand() % 1080;
@@ -21,8 +23,12 @@ Fish::Fish()
 
 void Fish::update(std::vector<Fish>& copains)
 {
-  for(int i = 0; copains.size(); i++){
+  for(int i = 0; i < copains.size(); i++){
     float distance = bbopGetDistance(getPosition(), copains[i].getPosition());
-    cerr << distance << endl;
+    if(distance > 10.f || distance < -10.f){
+      
+    }else{
+
+    }
   }
 }
