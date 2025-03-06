@@ -58,4 +58,7 @@ Vector2f Perso::getPos(){
 
 void Perso::setPos(Vector2f position){
     pos = position;
+    textures[0].setPosition(pos);
+    textures[1].setPosition(pos);
+    textures[2].setPosition(pos);
 }
