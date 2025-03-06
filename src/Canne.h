@@ -10,7 +10,7 @@ using namespace std;
 enum State{
     idol =0,
     fall =1,
-    grab =2,
+    pull =2,
     shoot=3
 };
 
@@ -21,7 +21,7 @@ private:
     Vector2f start;
     float range , trotation;
     float angle;
-    bool rotat;
+    bool rotat,max;
     Sprite hammecon;
     int niveau;
 public:
@@ -30,5 +30,6 @@ public:
     void update();
     int getniveau();
     Vector2f hammeconpos();
+    void remonte();
 };
 

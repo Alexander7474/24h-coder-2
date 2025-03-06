@@ -55,7 +55,11 @@ int main() {
     
 
 
-    cc.input(2);
+    cc.input(3);
+    if (glfwGetKey(window, GLFW_KEY_Z) == GLFW_PRESS) {
+        cc.remonte();
+    } 
+    
     cc.update();
     scene.Draw(cc);
     
