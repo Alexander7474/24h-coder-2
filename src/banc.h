@@ -12,6 +12,9 @@ private:
   Vector2f zoneX;
   Vector2f zoneY;
 
+  Vector2f direction;
+  Vector2f center;
+
 public:
   Banc(int _size);
   Banc();

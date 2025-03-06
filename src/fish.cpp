@@ -1,6 +1,5 @@
 #include <iostream>
 #include <time.h>
-#include <random>
 
 #include "fish.h"
 
@@ -9,21 +8,12 @@ using namespace std;
 Fish::Fish()
   : Sprite("img/fishs/fish.png")
 {
-  setSize(50.f,10.f);
-  setOrigin(25.f,5.f);
+  setSize(64.f,32.f);
+  setOrigin(32.f,16.f);
 
   dir = 0;
-  std::random_device rd;
-  std::mt19937 gen(rd());
-
   maxSpeed = 3.0f;
-  std::uniform_real_distribution<float> dist(-maxSpeed,maxSpeed);
-  
-  direction.x = dist(gen);
-  direction.y = dist(gen);
 
-  cerr << direction.x << endl;
- 
   int randx = rand() % 1920;
   int randy = rand() % 1080;
 
@@ -32,29 +22,15 @@ Fish::Fish()
   distanceDetect = 1000.f;
 }
 
-void Fish::update(std::vector<Fish>& copains)
+void Fish::update(Vector2f objectif, std::vector<Fish> copains)
 {
-  Vector2f objectif(0.f,0.f);
-  int copainsProche = 0;
+  goTo(objectif);
 
   for(int i = 0; i < copains.size(); i++){
-    float distance = bbopGetDistance(getPosition(), copains[i].getPosition());
-    
-    if(distance <= distanceDetect){ 
-      //on essaye de réorienté la direction vers le poisson 
-      objectif.x += copains[i].getPosition().x;
-      objectif.y += copains[i].getPosition().y;
-
-      copainsProche += 1;
+    if(bbopGetDistance(getPosition(), copains[i].getPosition()) < 32.f){
+      move((getPosition().x-copains[i].getPosition().x)/32.f,(getPosition().y-copains[i].getPosition().y)/32.f);
     }
   }
-    
-  if(objectif.x > 0 && objectif.y > 0){
-      objectif.x /= (float) copainsProche;
-      objectif.y /= (float) copainsProche;
-      goTo(objectif);
-  }
-
 }
 
 void Fish::goTo(Vector2f p)
@@ -72,27 +48,24 @@ void Fish::goTo(Vector2f p)
 
   float addRotation = 0.f;
 
-
   if(rotation - getRotation() >= 0){
-    addRotation = getRotation()+0.01f;
+    addRotation = getRotation()+0.0001f*distanceC;
   }else{
-    addRotation = getRotation()-0.01f;
+    addRotation = getRotation()-0.0001f*distanceC;
   }
-
 
   setRotation(addRotation);
 
-
   if(getPosition().x < 0){
-    setRotation(0.f);
+    setPosition(1920, getPosition().y);
   }else if (getPosition().x > 1920){
-    setRotation(M_PI);
+    setPosition(0, getPosition().y);
   }
 
   if(getPosition().y < 0){
-    setRotation(M_PI/2.f);
+    setPosition(getPosition().x, 1080);
   }else if (getPosition().y > 1080){
-    setRotation(M_PI+(M_PI/2.f));
+    setPosition(getPosition().x, 0);
   }
   Vector2f dep(cos(addRotation),sin(addRotation));
   direction.x = maxSpeed*dep.x;
