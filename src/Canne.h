@@ -31,5 +31,6 @@ public:
     int getniveau();
     Vector2f hammeconpos();
     void remonte();
+    void draw(Scene &scene);
 };
 

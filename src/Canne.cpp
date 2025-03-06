@@ -10,6 +10,8 @@ Canne::Canne(Vector2f start){
     trotation=1;
     rotat=true;
     max=true;
+    hammecon.setTexture(Texture("sprites/hammecon.png"));
+    hammecon.setPosition(getCollisionBox().getRight(),getCollisionBox().getBottom());
 }
 void Canne::input(float power){
     range=100*power;
@@ -40,7 +42,8 @@ void Canne::update(){
    {
         setRotation(getRotation()+0.001);
    }
-   
+   cerr<<max<<endl;
+   hammecon.setPosition(getPosition().x+cos(getRotation())*getSize().x,getPosition().y+sin(getRotation())*getSize().x);
 }
 
 int Canne::getniveau(){
@@ -52,9 +55,9 @@ Vector2f Canne::hammeconpos(){
 }
 
 void Canne::remonte(){
-    if (getSize().x>10)
-    {
-        setSize(getSize().x-0.01,getSize().y);
-    }
-    max=false;
+    setSize(getSize().x-0.01,getSize().y);
+}
+
+void Canne::draw(Scene &scene){
+    scene.Draw(hammecon);
 }

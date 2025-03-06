@@ -62,6 +62,7 @@ int main() {
     
     cc.update();
     scene.Draw(cc);
+    cc.draw(scene);
     
     
     scene.render();
