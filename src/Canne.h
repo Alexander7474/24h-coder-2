@@ -21,6 +21,8 @@ private:
     Vector2f start;
     float range , trotation;
     float angle;
+    bool rotat;
+    Sprite hammecon;
 public:
     Canne(Vector2f start);
     void input(float power);
