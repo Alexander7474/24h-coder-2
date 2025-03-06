@@ -6,6 +6,9 @@ Game::Game() :
     map(Map()),
     player(Perso())
 {
+    cam.setScale(0.25);
+    cam.setPosition(map.getSpawnPoints()[0]);
+    player.setPos(map.getSpawnPoints()[0]);
 }
 
 Game::~Game()
@@ -23,6 +26,10 @@ void Game::Draw()
 {
     scene.Use();
     map.Draw(scene, cam);
+
+    
+
+    scene.Draw(player);
 
     // Faire le rendue du frame buffer de la fenêtre
     scene.render();
