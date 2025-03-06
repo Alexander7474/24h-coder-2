@@ -23,32 +23,38 @@
 
 #include <BBOP/Graphics.h>
 
+#include "src/banc.h"
+#include "src/fish.h"
+
 using namespace std;
-
-
-
-//tentative de simuler une bougie
 
 int main() {
   
   GLFWwindow * window;
   bbopInit(1920,1080,"name",window);
-  Scene scene;
-
-  Map map;
-  Camera cam;
   
+  Scene scene(1.0f, Vector3i(255,255,255));
 
+  glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_HIDDEN);
+  srand(time(NULL));
+
+  Banc b(20);
 
   while (!glfwWindowShouldClose(window))
   {
+
+    #ifdef DEBUG 
+    system("clear");
+    for(string &s: LOGS){
+      cout << s << endl;
+    }
+    cout << "----------------------------------------------------------------" << endl;
+    #endif
     // Nettoyage de la fenêtre
     bbopCleanWindow(window, Vector3i(0,0,0),1.0);
-  
-  
-    scene.Use();
-    map.Draw(scene, cam);
 
+    b.update();
+    scene.Draw(b);
 
     // Faire le rendue du frame buffer de la fenêtre
     scene.render();
