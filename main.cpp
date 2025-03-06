@@ -56,7 +56,18 @@ int main() {
     // On 'active' la scene pour donner au shader opengl les variables uniforms
     scene.Use();
 
+    if(glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS){
+      p.stateUpdate(0);
+    }
+    if(glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS){
+      p.stateUpdate(1);
+    }
+    if(glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS){
+      p.stateUpdate(2);
+    }
+
     p.Update();
+
     scene.Draw(p);
 
     // Faire le rendue du frame buffer de la fenêtre

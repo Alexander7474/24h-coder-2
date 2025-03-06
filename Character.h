@@ -19,5 +19,4 @@ public:
     void Draw(GLint *renderUniform) const override;
     void Update();
     void stateUpdate(int);
-    void brouillon();
 };
