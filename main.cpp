@@ -20,6 +20,7 @@
 #include <glm/fwd.hpp>
 #include <glm/glm.hpp>
 #include <chrono>
+#include "src/Character.h"
 
 #include <BBOP/Graphics.h>
 
