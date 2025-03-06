@@ -38,7 +38,7 @@ int main() {
   GLFWwindow * window;
   bbopInit(1920,1080,"name",window);
   
-  Scene scene(0.1f, Vector3i(255,255,255));
+  Scene scene(1.0f, Vector3i(255,255,255));
 
    // Masquer le curseur de la souris
   glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_HIDDEN);

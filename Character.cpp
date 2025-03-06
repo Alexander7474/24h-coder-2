@@ -5,6 +5,7 @@ using namespace std;
 Perso::Perso(){
     AnimatedSprite s("sprites/1.png", Vector2i(3,1), 0.5);
     textures.push_back(s);
+    state = rest;
 }
 
 void Perso::Draw(GLint *renderUniform) const{
@@ -12,17 +13,25 @@ void Perso::Draw(GLint *renderUniform) const{
 }
 
 void Perso::Update(){
-    textures[0].update();
+    if (state == rest){
+        textures[0].update();
+    }
+    if (state == throwing){
+        textures[1].update();
+    }
+    if (state == pull){
+        textures[2].update();
+    }
+    else exit(1); // error in Perso::Update
 }
 
-/*
-update en fonction de l'état de l'animation
-donc chaque etat = 1 nb de frames
-et faut pouvoir changer d'état
-donc :
-    - une partie qui définit les etats et leur
-    nombre de frame
-    - une partie qui permet de changer d'état
-comme on change d'état en fonction de l'action du
-joueur
-*/
+void Perso::stateUpdate(int i){
+    if (i == 0) state = rest;
+    if (i == 1) state = throwing;
+    if (i == 2) state = pull;
+    else exit(1); // error in Perso::stateUpdate
+}
+
+void Perso::brouillon(){
+
+}
