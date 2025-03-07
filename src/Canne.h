@@ -17,16 +17,17 @@ private:
     float angle;
     bool rotat,max;
     Sprite hammecon;
-    int niveau;
     bool traped;
     Fish *catched;
 public:
     Canne(Vector2f start);
     void input(float power);
     void update(std::vector<Banc> poisson);
-    int getniveau();
+    float linesize();
+    int guetscore();
     Vector2f hammeconpos();
     void remonte();
     void draw(Scene &scene);
     void prise();
+
 };

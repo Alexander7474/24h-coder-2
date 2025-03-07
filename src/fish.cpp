@@ -91,3 +91,12 @@ void Fish::goTo(Vector2f p)
 
   move(direction);
 }
+
+int Fish::guetscore(){
+  if (score>0)
+  {
+    return 0;
+  }else{
+    return score;
+  }
+}

@@ -16,7 +16,7 @@ private :
     Map map;
     Perso player;
     std::vector<Banc> bancs;
-    Canne canne;
+    Canne *canne;
     bool canneLaunched;
     bool gamestarted;
     float time;
@@ -27,4 +27,5 @@ public :
 
     void Draw();
     void update();
+    void partystarted();
 };

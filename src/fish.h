@@ -16,4 +16,5 @@ public:
 
   void goTo(Vector2f p);
   void update(Vector2f objectif, std::vector<Fish> copains);
+  int guetscore();
 };
