@@ -21,7 +21,7 @@ private :
 public :
     Game();
     ~Game();
-
+    bool on;
     void Draw();
     void update();
 };
