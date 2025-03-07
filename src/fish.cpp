@@ -1,6 +1,5 @@
 #include <iostream>
 #include <time.h>
-
 #include "fish.h"
 
 using namespace std;
@@ -48,11 +47,17 @@ void Fish::goTo(Vector2f p)
 
   float addRotation = 0.f;
 
-  if(rotation - getRotation() >= 0){
-    addRotation = getRotation()+0.0001f*distanceC;
-  }else{
-    addRotation = getRotation()-0.0001f*distanceC;
-  }
+  if(rotation > 2*M_PI)
+    rotation = rotation-2*M_PI;
+  if(getRotation() > 2*M_PI)
+    setRotation(getRotation()-2*M_PI);
+
+ 
+    if(rotation - getRotation() >= 0){
+      addRotation = getRotation()+0.01f*(distanceC/100);
+    }else{
+      addRotation = getRotation()-0.01f*(distanceC/100);
+    }
 
   setRotation(addRotation);
 
@@ -68,8 +73,14 @@ void Fish::goTo(Vector2f p)
     setPosition(getPosition().x, 0);
   }
   Vector2f dep(cos(addRotation),sin(addRotation));
-  direction.x = maxSpeed*dep.x;
-  direction.y = maxSpeed*dep.y;
+  direction.x = dep.x*(distanceC/100);
+  direction.y = dep.y*(distanceC/100);
+
+  if(direction.x > maxSpeed*dep.x)
+    direction.x = maxSpeed*dep.x;
+
+  if(direction.y > maxSpeed*dep.y)
+    direction.y = maxSpeed*dep.y;
 
   move(direction);
 }

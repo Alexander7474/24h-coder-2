@@ -20,6 +20,7 @@ public:
   Banc();
 
   std::vector<Fish>& getFishs();
+  Fish getFish(int i);
   void Draw(GLint* renderUniforms) const override;
   void update();
 };

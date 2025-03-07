@@ -27,7 +27,7 @@ Banc::Banc(int _size)
   }  
   std::random_device rd;
   std::mt19937 gen(rd());
-  std::uniform_real_distribution<float> dist(-5.0,5.0);
+  std::uniform_real_distribution<float> dist(3.0,5.0);
   
   direction.x = dist(gen);
   direction.y = dist(gen);
@@ -64,4 +64,11 @@ void Banc::update()
 std::vector<Fish>& Banc::getFishs()
 {
   return fishs;
+}
+
+Fish Banc::getFish(int i)
+{
+  Fish result = fishs[i];
+  fishs.erase(fishs.begin()+i);
+  return result;
 }
