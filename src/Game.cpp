@@ -93,11 +93,30 @@ void Game::partystarted(){
     gamestarted=true;
     time=glfwGetTime();
   }
+  cerr << glfwGetTime()-time << endl;
   if (glfwGetTime()-time>150)
   {
     gameend=true;
-    //button restart etc
+    on = false;
+
+    // reset à partir du main
   }
+}
+
+void Game::reset()
+{
   
+  time = 0;
+  score = 0;
+  gameend = false;
+  gamestarted = false;
+  canneLaunched = false;
+  on = true;
   
+  player.reset();
+  canne->reset();
+
+  canne->setPosition(Vector2f(map.getSpawnPoints()[0].x+45.f,map.getSpawnPoints()[0].y+10.f));
+
+  cam.setPosition(map.getSpawnPoints()[0]);
 }

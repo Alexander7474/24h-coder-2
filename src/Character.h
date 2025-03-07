@@ -29,4 +29,5 @@ public:
     int getState();
     Vector2f getPos();
     void setPos(Vector2f);
+    void reset();
 };

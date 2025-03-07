@@ -108,3 +108,24 @@ void Canne::prise(){
         
     }
 }
+
+
+void Canne::reset()
+{
+    this->start=start;
+    setPosition(start);
+    setPosition(Vector2f(0,0));
+    setOrigin(Vector2f(0,0));
+    setSize(Vector2f(20.f,1.f));
+    setColor(Vector3i(255,255,255));
+    range=1000.f;
+    trotation=1;
+    rotat=true;
+    max=true;
+    hammecon.setTexture(Texture("img/hammecon.png"));
+    hammecon.setPosition(getCollisionBox().getRight(),getCollisionBox().getBottom());
+    hammecon.setOrigin(Vector2f(0,0));
+    catched=nullptr;
+    hammecon.setSize(Vector2f(4.f,6.f));
+    traped=false;
+}

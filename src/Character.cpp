@@ -99,3 +99,10 @@ void Perso::setPos(Vector2f position){
     textures[2].setPosition(pos);
     textures[3].setPosition(pos);
 }
+
+
+void Perso::reset()
+{
+  holding = false;
+  stateUpdate(0);
+}

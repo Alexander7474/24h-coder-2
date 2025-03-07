@@ -31,4 +31,5 @@ public :
     void Draw();
     void update();
     void partystarted();
+    void reset();
 };

@@ -59,6 +59,7 @@ int main() {
     }
     else if (game.on)
     {
+      game.partystarted();
       game.update();
       game.Draw();
     }
@@ -73,7 +74,7 @@ int main() {
       int buttoncount;
       const unsigned char *button = glfwGetJoystickButtons(GLFW_JOYSTICK_1 , &buttoncount);
       if (GLFW_PRESS==button[0]){ // A is pressed
-        game.on = true;
+        game.reset();
       }
     }
         
