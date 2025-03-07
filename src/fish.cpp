@@ -7,14 +7,14 @@ using namespace std;
 Fish::Fish(float _speed, float _rotation)
   : Sprite("img/fishs/fish.png")
 {
-  setSize(64.f,32.f);
-  setOrigin(32.f,16.f);
+  setSize(32.f,16.f);
+  setOrigin(16.f,8.f);
 
   maxSpeed = _speed;
   rotationSpeed = _rotation;
 
-  int randx = rand() % 1920;
-  int randy = rand() % 1080;
+  int randx = rand() % 2000;
+  int randy = rand() % 1700+300;
 
   setPosition(randx,randy);
 
@@ -60,16 +60,16 @@ void Fish::goTo(Vector2f p)
 
   setRotation(addRotation);
 
-  if(getPosition().x < 0){
-    setPosition(1920, getPosition().y);
-  }else if (getPosition().x > 1920){
-    setPosition(0, getPosition().y);
+  if(getPosition().x < -100){
+    setRotation(M_PI*2.f);
+  }else if (getPosition().x > 2000){
+    setRotation(M_PI);
   }
 
-  if(getPosition().y < 0){
-    setPosition(getPosition().x, 1080);
-  }else if (getPosition().y > 1080){
-    setPosition(getPosition().x, 0);
+  if(getPosition().y < 200){
+    setRotation(M_PI/2.f);
+  }else if (getPosition().y > 2000){
+    setRotation(M_PI/2.f+M_PI);
   }
   Vector2f dep(cos(addRotation),sin(addRotation));
   direction.x = dep.x*(distanceC/100);

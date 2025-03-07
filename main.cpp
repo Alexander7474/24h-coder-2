@@ -23,8 +23,7 @@
 
 #include <BBOP/Graphics.h>
 
-#include "src/banc.h"
-#include "src/fish.h"
+#include "src/Game.h"
 
 using namespace std;
 
@@ -32,49 +31,16 @@ int main() {
   
   GLFWwindow * window;
   bbopInit(1920,1080,"name",window);
-  
-  Scene scene(0.0f, Vector3i(255,255,255));
 
-  glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_HIDDEN);
-  srand(time(NULL));
-
-  Banc b(10, 9.f, 0.01f, Vector3i(135,200,235));
-  Banc b2(10, 2.f, 0.01f, Vector3i(235,200,135));
-  RectangleShape bg;
-  bg.setSize(1920,1080);
+  Game game;
 
   while (!glfwWindowShouldClose(window))
   {
-
-    #ifdef DEBUG 
-    system("clear");
-    for(string &s: LOGS){
-      cout << s << endl;
-    }
-    cout << "----------------------------------------------------------------" << endl;
-    #endif
     // Nettoyage de la fenêtre
     bbopCleanWindow(window, Vector3i(0,0,0),1.0);
 
-    // On 'active' la scene pour donner au shader opengl les variables uniforms
-    scene.Use();
-
-
-    b.update();
-    b2.update();
-    scene.Draw(bg);
-    scene.Draw(b);
-    scene.Draw(b2);
-
-    for(Light &l : b.getFishsLight()){
-      scene.addLight(l);
-    }
-    for(Light &l : b2.getFishsLight()){
-      scene.addLight(l);
-    }
-
-    // Faire le rendue du frame buffer de la fenêtre
-    scene.render();
+    game.update();
+    game.Draw();
     
     // Verfication d'erreur opengl
     bbopErrorCheck();
