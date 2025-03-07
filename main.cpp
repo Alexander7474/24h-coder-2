@@ -38,7 +38,9 @@ int main() {
 
   Canne cc(Vector2f(250.f,250.f));
   Scene scene(1.0f, Vector3i(255,255,255));
+
   Banc poisson(30);
+
 
   while (!glfwWindowShouldClose(window))
   {
@@ -46,6 +48,8 @@ int main() {
 
     bbopCleanWindow(window, Vector3i(0,0,0),1.0);
   
+
+
 
     
 
