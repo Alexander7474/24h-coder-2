@@ -18,6 +18,7 @@ private:
     Sprite hammecon;
     int niveau;
     bool traped;
+    Fish *catched;
 public:
     Canne(Vector2f start);
     void input(float power);
@@ -26,5 +27,6 @@ public:
     Vector2f hammeconpos();
     void remonte();
     void draw(Scene &scene);
+    void prise();
 };
 

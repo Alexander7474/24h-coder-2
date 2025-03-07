@@ -14,6 +14,7 @@ Canne::Canne(Vector2f start){
     hammecon.setTexture(Texture("sprites/hammecon.png"));
     hammecon.setPosition(getCollisionBox().getRight(),getCollisionBox().getBottom());
     hammecon.setOrigin(Vector2f(0,0));
+    catched=nullptr;
 }
 void Canne::input(float power){
     range=100*power;
@@ -50,13 +51,14 @@ void Canne::update(Banc poisson){
 
    for (int i = 0; i < poisson.getFishs().size(); i++)
    {
-    if (hammecon.getCollisionBox().check(poisson.getFishs()[i].getCollisionBox()))
+    if (hammecon.getCollisionBox().check(poisson.getFishs()[i].getCollisionBox())&& traped!=true)
     {
+        
         traped=true;
-        cerr<<"coco"<<endl;
+        catched=new Fish(poisson.getFish(i));
     }
-    
    }
+   prise();
    
 }
 
@@ -71,11 +73,23 @@ Vector2f Canne::hammeconpos(){
 void Canne::remonte(){
     if (getSize().x>10)
     {
-        setSize(getSize().x-0.5,getSize().y);
+        cerr<<"coco"<<endl;
+        setSize(getSize().x-1,getSize().y);
     }
     max=false;
 }
 
 void Canne::draw(Scene &scene){
     scene.Draw(hammecon);
+    if (catched!=nullptr)
+    {
+        scene.Draw(*catched);
+    }
+    
+}
+
+void Canne::prise(){
+    if(catched != nullptr){
+        catched->setPosition(hammecon.getPosition());
+    }
 }

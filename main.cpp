@@ -56,7 +56,7 @@ int main() {
     scene.Use();
     
     
-    if (GLFW_PRESS==GLFW_KEY_Z)
+    if (glfwGetKey(window, GLFW_KEY_Z)==GLFW_PRESS)
     {
       cc.remonte(); 
     }
