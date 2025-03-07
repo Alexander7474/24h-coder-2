@@ -54,8 +54,7 @@ void Canne::update(std::vector<Banc> poisson){
      for (int i = 0; i < b.getFishs().size(); i++)
      {
         if (hammecon.getCollisionBox().check(b.getFishs()[i].getCollisionBox())&& traped!=true)
-        {
-            
+        {    
             traped=true;
             catched=new Fish(b.getFish(i));
         }
@@ -65,16 +64,28 @@ void Canne::update(std::vector<Banc> poisson){
    
 }
 
-int Canne::getniveau(){
-    return niveau;
+float Canne::linesize(){
+    return getSize().x;
 }
 
 Vector2f Canne::hammeconpos(){
     return hammecon.getPosition();
 }
 
+int Canne::guetscore(){
+    if (catched==nullptr)
+    { 
+        cerr<<"pas bien"<<endl;
+        return 0;
+    }else{
+        cerr<<catched->guetscore();
+        return catched->guetscore();
+    }
+    
+}
+
 void Canne::remonte(){
-    if (getSize().x>10)
+    if (getSize().x>=0)
     {
         setSize(getSize().x-5,getSize().y);
     }
