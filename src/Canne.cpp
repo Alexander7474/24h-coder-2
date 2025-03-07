@@ -3,12 +3,12 @@
 Canne::Canne(Vector2f start){
     this->start=start;
     setPosition(start);
-    setPosition(Vector2f(0,0));
+    setPosition(Vector2f(200,200));
     setOrigin(Vector2f(0,0));
     setSize(Vector2f(20.f,1.f));
     setColor(Vector3i(255,255,255));
     range=100.f;
-    trotation=1;
+    trotation=0.5f;
     rotat=true;
     max=true;
     hammecon.setTexture(Texture("sprites/hammecon.png"));
@@ -18,14 +18,15 @@ Canne::Canne(Vector2f start){
 }
 void Canne::input(float power){
     range=100*power;
-    trotation=-(1/power);
+    
 }
 void Canne::update(Banc poisson){
-    if (getRotation() >trotation && rotat)
+    cerr<<getRotation()<<endl;
+    if (getRotation() <trotation && rotat)
     {
-        setRotation(getRotation()-0.01f);
+        setRotation(getRotation()-0.1f);
         hammecon.setRotation(hammecon.getRotation()-0.01f);
-        if (getRotation()<trotation)
+        if (getRotation()>trotation)
         {
             rotat=false;
         }
@@ -35,6 +36,7 @@ void Canne::update(Banc poisson){
    if (getSize().x<range && max)
    {
         setSize(Vector2f(getSize().x+1,getSize().y));
+        setRotation(getRotation()-0.001f);
         if (range-getSize().x<3)
         {
             max=false;
@@ -42,7 +44,7 @@ void Canne::update(Banc poisson){
         
    }
    
-   if (getRotation()>-1 && getRotation()<1)
+   if (getRotation()>-1 && getRotation()<2)
    {
         setRotation(getRotation()+0.001);
    }
@@ -73,7 +75,6 @@ Vector2f Canne::hammeconpos(){
 void Canne::remonte(){
     if (getSize().x>10)
     {
-        cerr<<"coco"<<endl;
         setSize(getSize().x-1,getSize().y);
     }
     max=false;
@@ -91,5 +92,6 @@ void Canne::draw(Scene &scene){
 void Canne::prise(){
     if(catched != nullptr){
         catched->setPosition(hammecon.getPosition());
+        catched->setRotation(hammecon.getRotation());
     }
 }
