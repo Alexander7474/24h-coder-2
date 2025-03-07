@@ -18,6 +18,7 @@ Game::Game() :
     Banc b(i,3.f,0.01f,Vector3i(255,255,255));
     bancs.push_back(b);
   }
+  on = false; 
 }
 
 Game::~Game()
