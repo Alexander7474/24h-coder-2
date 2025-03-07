@@ -77,10 +77,16 @@ void Game::Draw()
 }
 
 void Game::partystarted(){
-  if (!gamestarted)
+  if (!gamestarted && !gameend)
   {
     gamestarted=true;
     time=glfwGetTime();
   }
+  if (glfwGetTime()-time>150)
+  {
+    gameend=true;
+    //button restart etc
+  }
+  
   
 }

@@ -17,7 +17,7 @@ Fish::Fish(float _speed, float _rotation, int t)
   }
   setSize(32.f,16.f);
   setOrigin(16.f,8.f);
-
+  cerr<<score<<endl;
   maxSpeed = _speed;
   rotationSpeed = _rotation;
 
@@ -95,8 +95,8 @@ void Fish::goTo(Vector2f p)
 int Fish::guetscore(){
   if (score>0)
   {
-    return 0;
-  }else{
     return score;
+  }else{
+    return 0;
   }
 }

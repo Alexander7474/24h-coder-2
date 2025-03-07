@@ -18,7 +18,7 @@ private :
     std::vector<Banc> bancs;
     Canne *canne;
     bool canneLaunched;
-    bool gamestarted;
+    bool gamestarted,gameend;
     float time;
     int score;
 public :
