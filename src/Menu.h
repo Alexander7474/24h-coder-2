@@ -9,6 +9,9 @@ class Menu{
         Sprite menu;
         Sprite buttonMenu;
         Scene scene;
+        Sprite texte;
+        Sprite credits;
+
     public:
         Menu();
         bool on;
