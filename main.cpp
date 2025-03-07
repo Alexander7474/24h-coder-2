@@ -24,6 +24,7 @@
 #include <BBOP/Graphics.h>
 
 #include "src/Game.h"
+#include "src/Menu.h"
 
 using namespace std;
 
@@ -33,15 +34,29 @@ int main() {
   bbopInit(1920,1080,"name",window);
 
   Game game;
+  Menu m;
+  cerr<<"eer"<<endl;
+  Scene s;
 
   while (!glfwWindowShouldClose(window))
   {
     // Nettoyage de la fenêtre
     bbopCleanWindow(window, Vector3i(0,0,0),1.0);
 
-    game.update();
-    game.Draw();
-    
+    if (m.on){
+      m.Draw();
+      int buttoncount;
+      const unsigned char *button = glfwGetJoystickButtons(GLFW_JOYSTICK_1 , &buttoncount);
+      if (GLFW_PRESS==button[0]){ // A is pressed
+        m.on = false;
+        game.on = true;
+      }
+    }
+    else if (game.on){
+      game.update();
+      game.Draw();
+    }
+        
     // Verfication d'erreur opengl
     bbopErrorCheck();
 
