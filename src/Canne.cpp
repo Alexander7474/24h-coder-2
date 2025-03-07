@@ -45,7 +45,7 @@ void Canne::update(std::vector<Banc> poisson){
    
    if (getRotation()>-1 && getRotation()<1.5f && max==false)
    {
-        setRotation(getRotation()+0.01);
+        setRotation(getRotation()+0.005f);
    }
    hammecon.setRotation(getRotation()-0.01f);
    hammecon.setPosition(getPosition().x+cos(getRotation())*getSize().x,getPosition().y+sin(getRotation())*getSize().x);
@@ -93,7 +93,7 @@ void Canne::draw(Scene &scene){
 void Canne::prise(){
     if(catched != nullptr){
         catched->setPosition(hammecon.getPosition());
-        catched->setRotation(getRotation());
+        catched->setRotation(-getRotation());
         
     }
 }

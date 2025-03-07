@@ -9,6 +9,7 @@ private:
   float rotationSpeed;
   Vector2f direction;
   float distanceDetect;
+  int score;
 
 public:
   Fish(float _speed, float _rotation, int t);
