@@ -3,6 +3,7 @@
 Canne::Canne(Vector2f start){
     this->start=start;
     setPosition(start);
+    setPosition(Vector2f(0,0));
     setOrigin(Vector2f(0,0));
     setSize(Vector2f(20.f,1.f));
     setColor(Vector3i(255,255,255));
@@ -18,8 +19,8 @@ void Canne::input(float power){
     range=100*power;
     trotation=-(1/power);
 }
-void Canne::update(){
-    if (getRotation() >trotation && etat!=fall && rotat)
+void Canne::update(Banc poisson){
+    if (getRotation() >trotation && rotat)
     {
         setRotation(getRotation()-0.01f);
         hammecon.setRotation(hammecon.getRotation()-0.01f);
@@ -44,8 +45,19 @@ void Canne::update(){
    {
         setRotation(getRotation()+0.001);
    }
-   cerr<<max<<endl;
+   
    hammecon.setPosition(getPosition().x+cos(getRotation())*getSize().x,getPosition().y+sin(getRotation())*getSize().x);
+
+   for (int i = 0; i < poisson.getFishs().size(); i++)
+   {
+    if (hammecon.getCollisionBox().check(poisson.getFishs()[i].getCollisionBox()))
+    {
+        traped=true;
+        cerr<<"coco"<<endl;
+    }
+    
+   }
+   
 }
 
 int Canne::getniveau(){

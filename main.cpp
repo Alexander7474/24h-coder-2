@@ -36,10 +36,9 @@ int main() {
   GLFWwindow * window;
   bbopInit(1920,1080,"name",window);
 
-  Canne cc(Vector2f(500.f,500.f));
+  Canne cc(Vector2f(250.f,250.f));
   Scene scene(1.0f, Vector3i(255,255,255));
-
-
+  Banc poisson(30);
 
   while (!glfwWindowShouldClose(window))
   {
@@ -52,23 +51,18 @@ int main() {
 
     scene.Use();
     
-
-
-
-    cc.input(3);
-    if (glfwGetKey(window, GLFW_KEY_Z) == GLFW_PRESS) {
-        cc.remonte();
-    } 
     
-    cc.update();
+    if (GLFW_PRESS==GLFW_KEY_Z)
+    {
+      cc.remonte(); 
+    }
+    cc.input(5);
+    cc.update(poisson);
+    poisson.update();
     scene.Draw(cc);
     cc.draw(scene);
-    
-    
-
+    scene.Draw(poisson);
     scene.render();
-    
-
     bbopErrorCheck();
 
     // Passage du front buffer pour afficher le rendue opengl sur la fenêtre glfw 
