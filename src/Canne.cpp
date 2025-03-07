@@ -16,6 +16,7 @@ Canne::Canne(Vector2f start){
     hammecon.setOrigin(Vector2f(0,0));
     catched=nullptr;
     hammecon.setSize(Vector2f(4.f,6.f));
+    traped=false;
 }
 void Canne::input(float power){
     range=100*power;
@@ -56,6 +57,8 @@ void Canne::update(std::vector<Banc> poisson){
         if (hammecon.getCollisionBox().check(b.getFishs()[i].getCollisionBox())&& traped!=true)
         {    
             traped=true;
+            delete catched;
+            cerr<<"poicon"<<endl;
             catched=new Fish(b.getFish(i));
         }
      }
