@@ -18,8 +18,8 @@ Fish::Fish(float _speed, float _rotation, int t)
   maxSpeed = _speed;
   rotationSpeed = _rotation;
 
-  int randx = rand() % 2000;
-  int randy = rand() % 1700+300;
+  int randx = rand() % 3000;
+  int randy = rand() % 1900+1100;
 
   setPosition(randx,randy);
 
@@ -67,13 +67,13 @@ void Fish::goTo(Vector2f p)
 
   if(getPosition().x < -100){
     setRotation(M_PI*2.f);
-  }else if (getPosition().x > 2000){
+  }else if (getPosition().x > 3000){
     setRotation(M_PI);
   }
 
-  if(getPosition().y < 200){
+  if(getPosition().y < 1200){
     setRotation(M_PI/2.f);
-  }else if (getPosition().y > 2000){
+  }else if (getPosition().y > 3000){
     setRotation(M_PI/2.f+M_PI);
   }
   Vector2f dep(cos(addRotation),sin(addRotation));

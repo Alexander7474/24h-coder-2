@@ -48,12 +48,12 @@ Banc::Banc(int _size, float _speed, float _rotation, Vector3i _rgb)
   direction.x = dist(gen);
   direction.y = dist(gen);
 
-  std::uniform_real_distribution<float> pos(500,1500);
+  std::uniform_real_distribution<float> pos(1500,2000);
   center.x = pos(gen);
   center.y = pos(gen);
 
-  zoneX = Vector2f(0,2000);
-  zoneY = Vector2f(300,2000);
+  zoneX = Vector2f(0,3000);
+  zoneY = Vector2f(1200,3000);
 }
 
 Banc::Banc()
