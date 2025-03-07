@@ -1,5 +1,6 @@
 #include "Game.h"
 #include "Character.h"
+#include "LoadingBar.h"
 #include <iostream>
 using namespace std;
 
@@ -49,6 +50,7 @@ void Game::Draw()
     map.Draw(scene, cam);
 
     scene.Draw(player);
+
     for(Banc &b : bancs){
       for(Light &l : b.getFishsLight()){
         scene.addLight(l);

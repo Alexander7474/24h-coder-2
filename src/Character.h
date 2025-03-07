@@ -5,6 +5,7 @@
 #include <BBOP/Graphics.h>
 
 #include "Canne.h"
+#include "LoadingBar.h"
 
 enum State{
     restNotLine=0,
@@ -13,11 +14,13 @@ enum State{
     restLine=3
 };
 
-class Perso : public BbopDrawable{
+class Perso :
+    public BbopDrawable{
 private:
     std::vector<AnimatedSprite> textures;
     State state;
     Vector2f pos;
+    LoadingBar loadingBar;
     bool holding; // holding onto R2
 
 public:
@@ -27,6 +30,7 @@ public:
     void update();
     void stateUpdate(int);
     int getState();
+    LoadingBar getLoadingBar();
     Vector2f getPos();
     void setPos(Vector2f);
 };

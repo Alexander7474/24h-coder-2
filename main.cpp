@@ -25,6 +25,7 @@
 
 #include "src/Game.h"
 #include "src/Menu.h"
+#include "src/LoadingBar.h"
 
 using namespace std;
 
@@ -35,7 +36,6 @@ int main() {
 
   Game game;
   Menu m;
-  cerr<<"eer"<<endl;
   Scene s;
 
   while (!glfwWindowShouldClose(window))
