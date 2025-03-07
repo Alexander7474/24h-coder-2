@@ -11,10 +11,11 @@ Canne::Canne(Vector2f start){
     trotation=1;
     rotat=true;
     max=true;
-    hammecon.setTexture(Texture("sprites/hammecon.png"));
+    hammecon.setTexture(Texture("img/hammecon.png"));
     hammecon.setPosition(getCollisionBox().getRight(),getCollisionBox().getBottom());
     hammecon.setOrigin(Vector2f(0,0));
     catched=nullptr;
+    hammecon.setSize(Vector2f(4.f,6.f));
 }
 void Canne::input(float power){
     range=100*power;
@@ -24,7 +25,6 @@ void Canne::update(std::vector<Banc> poisson){
     if (getRotation() >trotation && rotat)
     {
         setRotation(getRotation()-0.01f);
-        hammecon.setRotation(hammecon.getRotation()-0.01f);
         if (getRotation()<trotation)
         {
             rotat=false;
@@ -34,7 +34,8 @@ void Canne::update(std::vector<Banc> poisson){
 
    if (getSize().x<range && max)
    {
-        setSize(Vector2f(getSize().x+5,getSize().y));
+        setSize(Vector2f(getSize().x+10,getSize().y));
+        setRotation(getRotation()-0.005f);
         if (range-getSize().x<3)
         {
             max=false;
@@ -42,11 +43,11 @@ void Canne::update(std::vector<Banc> poisson){
         
    }
    
-   if (getRotation()>-1 && getRotation()<1)
+   if (getRotation()>-1 && getRotation()<1.5f && max==false)
    {
-        setRotation(getRotation()+0.001);
+        setRotation(getRotation()+0.005f);
    }
-   
+   hammecon.setRotation(getRotation()-0.01f);
    hammecon.setPosition(getPosition().x+cos(getRotation())*getSize().x,getPosition().y+sin(getRotation())*getSize().x);
 
   for(Banc &b : poisson){
@@ -92,5 +93,7 @@ void Canne::draw(Scene &scene){
 void Canne::prise(){
     if(catched != nullptr){
         catched->setPosition(hammecon.getPosition());
+        catched->setRotation(-getRotation());
+        
     }
 }

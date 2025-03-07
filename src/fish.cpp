@@ -7,10 +7,13 @@ using namespace std;
 Fish::Fish(float _speed, float _rotation, int t)
   : Sprite("img/fishs/fish.png")
 {
+  score=5;
   if(t == 2){
     setTexture(Texture("img/fishs/fish2.png"));
+    score=10;
   }else if(t == 3){
     setTexture(Texture("img/fishs/fish3.png"));
+    score=20;
   }
   setSize(32.f,16.f);
   setOrigin(16.f,8.f);
