@@ -22,6 +22,8 @@
 #include <chrono>
 #include "src/Character.h"
 
+#include"src/Canne.h"
+
 #include <BBOP/Graphics.h>
 
 #include "src/banc.h"
@@ -33,39 +35,38 @@ int main() {
   
   GLFWwindow * window;
   bbopInit(1920,1080,"name",window);
-  
+
+  Canne cc(Vector2f(250.f,250.f));
   Scene scene(1.0f, Vector3i(255,255,255));
 
-  glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_HIDDEN);
-  srand(time(NULL));
-
-  Banc b(20);
+  Banc poisson(30);
 
 
   while (!glfwWindowShouldClose(window))
   {
 
-    #ifdef DEBUG 
-    system("clear");
-    for(string &s: LOGS){
-      cout << s << endl;
-    }
-    cout << "----------------------------------------------------------------" << endl;
-    #endif
-    // Nettoyage de la fenêtre
+
     bbopCleanWindow(window, Vector3i(0,0,0),1.0);
-
-    // On 'active' la scene pour donner au shader opengl les variables uniforms
-    scene.Use();
+  
 
 
-    b.update();
-    scene.Draw(b);
 
-    // Faire le rendue du frame buffer de la fenêtre
-    scene.render();
     
-    // Verfication d'erreur opengl
+
+    scene.Use();
+    
+    
+    if (glfwGetKey(window, GLFW_KEY_Z)==GLFW_PRESS)
+    {
+      cc.remonte(); 
+    }
+    cc.input(5);
+    cc.update(poisson);
+    poisson.update();
+    scene.Draw(cc);
+    cc.draw(scene);
+    scene.Draw(poisson);
+    scene.render();
     bbopErrorCheck();
 
     // Passage du front buffer pour afficher le rendue opengl sur la fenêtre glfw 
