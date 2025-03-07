@@ -58,7 +58,6 @@ void Canne::update(std::vector<Banc> poisson){
         {    
             traped=true;
             delete catched;
-            cerr<<"poicon"<<endl;
             catched=new Fish(b.getFish(i));
         }
      }
@@ -78,10 +77,8 @@ Vector2f Canne::hammeconpos(){
 int Canne::guetscore(){
     if (catched==nullptr)
     { 
-        cerr<<"pas bien"<<endl;
         return 0;
     }else{
-        cerr<<catched->guetscore();
         return catched->guetscore();
     }
     

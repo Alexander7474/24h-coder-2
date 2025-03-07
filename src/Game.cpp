@@ -1,13 +1,16 @@
 #include "Game.h"
 #include "Character.h"
 #include <iostream>
+#include <string>
+
 using namespace std;
 
 Game::Game() :
     scene(Scene()),
     cam(Camera()),
     map(Map()),
-    canne(new Canne(Vector2f(0.f,0.f)))
+    canne(new Canne(Vector2f(0.f,0.f))),
+font(16,"fonts/BigBlueTermPlusNerdFont-Regular.ttf")
 {
     cam.setScale(0.4);
     score=0;
@@ -15,11 +18,15 @@ Game::Game() :
     Perso player(map.getSpawnPoints()[0]);
   canne->setPosition(Vector2f(map.getSpawnPoints()[0].x+45.f,map.getSpawnPoints()[0].y+10.f));
   canneLaunched = false;
-  for(int i = 0; i < 10; i++){
+  for(int i = 0; i < 13; i++){
     Banc b(i,3.f,0.01f,Vector3i(255,255,255));
     bancs.push_back(b);
   }
   on = false; 
+  timer = new TexteBox("timer", &font);
+  scoret = new TexteBox("score", &font);
+  scoret->setPosition(map.getSpawnPoints()[0]);
+  timer->setPosition(Vector2f(map.getSpawnPoints()[0].x,map.getSpawnPoints()[0].y-32));
 }
 
 Game::~Game()
@@ -51,6 +58,9 @@ void Game::update()
     canne->update(bancs);
     cam.setPosition(canne->hammeconpos());
   }
+
+  timer->setTexte(to_string(glfwGetTime()-time).c_str());
+  scoret->setTexte(to_string(score).c_str());
   
 }
 
@@ -69,6 +79,9 @@ void Game::Draw()
     if(canneLaunched)
        scene.Draw(*canne);
        canne->draw(scene);
+
+  scene.Draw(*scoret);
+  scene.Draw(*timer);
 
     // Faire le rendue du frame buffer de la fenêtre
     scene.render();

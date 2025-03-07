@@ -21,6 +21,9 @@ private :
     bool gamestarted,gameend;
     float time;
     int score;
+  Font font;
+  TexteBox *timer;
+  TexteBox *scoret;
 public :
     Game();
     ~Game();
