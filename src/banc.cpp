@@ -22,8 +22,16 @@ void Banc::Draw(GLint* renderUniforms) const
 Banc::Banc(int _size, float _speed, float _rotation, Vector3i _rgb)
   : size(_size)
 {
+  int t;
+  if(_size > 9){
+    t = 1;
+  }else if (_size >= 5){
+    t = 2;
+  }else{
+    t = 3;
+  }
   for(int i = 0; i < size; i++){
-    Fish fish(_speed, _rotation);
+    Fish fish(_speed, _rotation, t);
     fishs.push_back(fish);
     Light light;
     light.setIntensity(0.04f);

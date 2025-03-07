@@ -4,9 +4,14 @@
 
 using namespace std;
 
-Fish::Fish(float _speed, float _rotation)
+Fish::Fish(float _speed, float _rotation, int t)
   : Sprite("img/fishs/fish.png")
 {
+  if(t == 2){
+    setTexture(Texture("img/fishs/fish2.png"));
+  }else if(t == 3){
+    setTexture(Texture("img/fishs/fish3.png"));
+  }
   setSize(32.f,16.f);
   setOrigin(16.f,8.f);
 
