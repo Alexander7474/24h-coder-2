@@ -14,7 +14,6 @@ private:
 public:
   Fish();
 
-
   void goTo(Vector2f p);
-  void update(std::vector<Fish>& copains);
+  void update(Vector2f objectif, std::vector<Fish> copains);
 };
