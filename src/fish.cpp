@@ -4,14 +4,14 @@
 
 using namespace std;
 
-Fish::Fish()
+Fish::Fish(float _speed, float _rotation)
   : Sprite("img/fishs/fish.png")
 {
   setSize(64.f,32.f);
   setOrigin(32.f,16.f);
 
-  dir = 0;
-  maxSpeed = 3.0f;
+  maxSpeed = _speed;
+  rotationSpeed = _rotation;
 
   int randx = rand() % 1920;
   int randy = rand() % 1080;
@@ -25,7 +25,7 @@ void Fish::update(Vector2f objectif, std::vector<Fish> copains)
 {
   goTo(objectif);
 
-  for(int i = 0; i < copains.size(); i++){
+  for(long unsigned int i = 0; i < copains.size(); i++){
     if(bbopGetDistance(getPosition(), copains[i].getPosition()) < 32.f){
       move((getPosition().x-copains[i].getPosition().x)/32.f,(getPosition().y-copains[i].getPosition().y)/32.f);
     }
@@ -52,12 +52,11 @@ void Fish::goTo(Vector2f p)
   if(getRotation() > 2*M_PI)
     setRotation(getRotation()-2*M_PI);
 
- 
-    if(rotation - getRotation() >= 0){
-      addRotation = getRotation()+0.01f*(distanceC/100);
-    }else{
-      addRotation = getRotation()-0.01f*(distanceC/100);
-    }
+  if(rotation - getRotation() >= 0){
+    addRotation = getRotation()+rotationSpeed*(distanceC/100);
+  }else{
+    addRotation = getRotation()-rotationSpeed*(distanceC/100);
+  }
 
   setRotation(addRotation);
 

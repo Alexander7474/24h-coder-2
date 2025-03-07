@@ -7,23 +7,30 @@ using namespace std;
 
 void Banc::Draw(GLint* renderUniforms) const
 {
-  for(int i = 0; i < fishs.size(); i++){
+  for(long unsigned int i = 0; i < fishs.size(); i++){
     fishs[i].Draw(renderUniforms);
   }
 
-  RectangleShape rect;
-  rect.setSize(10.f,10.f);
-  rect.setPosition(center);
+  //RectangleShape rect;
+  //rect.setSize(10.f,10.f);
+  //rect.setPosition(center);
 
-  rect.Draw(renderUniforms);
+  //rect.Draw(renderUniforms);
 }
 
-Banc::Banc(int _size)
+Banc::Banc(int _size, float _speed, float _rotation, Vector3i _rgb)
   : size(_size)
 {
   for(int i = 0; i < size; i++){
-    Fish fish;
+    Fish fish(_speed, _rotation);
     fishs.push_back(fish);
+    Light light;
+    light.setIntensity(0.01f);
+    light.setLinear(0.2f);
+    light.setConstant(0.25f);
+    light.setQuadratic(0.8f);
+    light.setColor(_rgb);
+    fishsLight.push_back(light);
   }  
   std::random_device rd;
   std::mt19937 gen(rd());
@@ -41,7 +48,7 @@ Banc::Banc(int _size)
 }
 
 Banc::Banc()
-  : Banc(1)
+  : Banc(1, 2.f, 0.01f, Vector3i(135,200,235))
 {
 }
 
@@ -56,8 +63,9 @@ void Banc::update()
   center.x += direction.x;
   center.y += direction.y;
 
-  for(int i = 0; i < fishs.size(); i++){
+  for(long unsigned int i = 0; i < fishs.size(); i++){
     fishs[i].update(center,fishs);
+    fishsLight[i].setPosition(fishs[i].getPosition());
   }
 }
 
@@ -71,4 +79,9 @@ Fish Banc::getFish(int i)
   Fish result = fishs[i];
   fishs.erase(fishs.begin()+i);
   return result;
+}
+
+std::vector<Light>& Banc::getFishsLight()
+{
+  return fishsLight;
 }

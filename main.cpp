@@ -33,13 +33,15 @@ int main() {
   GLFWwindow * window;
   bbopInit(1920,1080,"name",window);
   
-  Scene scene(1.0f, Vector3i(255,255,255));
+  Scene scene(0.0f, Vector3i(255,255,255));
 
   glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_HIDDEN);
   srand(time(NULL));
 
-  Banc b(20);
-
+  Banc b(10, 9.f, 0.01f, Vector3i(135,200,235));
+  Banc b2(10, 2.f, 0.01f, Vector3i(235,200,135));
+  RectangleShape bg;
+  bg.setSize(1920,1080);
 
   while (!glfwWindowShouldClose(window))
   {
@@ -59,7 +61,17 @@ int main() {
 
 
     b.update();
+    b2.update();
+    scene.Draw(bg);
     scene.Draw(b);
+    scene.Draw(b2);
+
+    for(Light &l : b.getFishsLight()){
+      scene.addLight(l);
+    }
+    for(Light &l : b2.getFishsLight()){
+      scene.addLight(l);
+    }
 
     // Faire le rendue du frame buffer de la fenêtre
     scene.render();
