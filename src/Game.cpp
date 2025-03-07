@@ -14,7 +14,7 @@ Game::Game() :
     Perso player(map.getSpawnPoints()[0]);
   canne.setPosition(Vector2f(map.getSpawnPoints()[0].x+45.f,map.getSpawnPoints()[0].y+10.f));
   canneLaunched = false;
-  for(int i = 0; i < 13; i++){
+  for(int i = 0; i < 10; i++){
     Banc b(i,3.f,0.01f,Vector3i(255,255,255));
     bancs.push_back(b);
   }
@@ -56,6 +56,7 @@ void Game::Draw()
     }
     if(canneLaunched)
        scene.Draw(canne);
+       canne.draw(scene);
 
     // Faire le rendue du frame buffer de la fenêtre
     scene.render();
