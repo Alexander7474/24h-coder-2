@@ -35,26 +35,46 @@ int main() {
 
   Game game;
   Menu m;
-  cerr<<"eer"<<endl;
   Scene s;
+
+  Sprite restart("img/restart_button.png");
+  restart.setSize(128*3,60*3);
+  restart.setPosition(1920/2 - restart.getSize().x/2, 1080/2 - restart.getSize().y/2);
 
   while (!glfwWindowShouldClose(window))
   {
     // Nettoyage de la fenêtre
     bbopCleanWindow(window, Vector3i(0,0,0),1.0);
 
-    if (m.on){
+    if (m.on)
+    {
       m.Draw();
       int buttoncount;
       const unsigned char *button = glfwGetJoystickButtons(GLFW_JOYSTICK_1 , &buttoncount);
-      if (GLFW_PRESS==button[0]){ // A is pressed
+      if (GLFW_PRESS==button[0])
+      { // A is pressed
         m.on = false;
         game.on = true;
       }
     }
-    else if (game.on){
+    else if (game.on)
+    {
       game.update();
       game.Draw();
+    }
+
+    else
+    {
+      game.Draw();
+      
+      s.Use();
+      s.Draw(restart);
+      s.render();
+      int buttoncount;
+      const unsigned char *button = glfwGetJoystickButtons(GLFW_JOYSTICK_1 , &buttoncount);
+      if (GLFW_PRESS==button[0]){ // A is pressed
+        game.on = true;
+      }
     }
         
     // Verfication d'erreur opengl
